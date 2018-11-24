@@ -1,33 +1,3 @@
-// data storage config
-var databases = [
-    InitDatabase("dbTopLevel"),
-    InitDatabase("dbMidLevel"),
-    InitDatabase("dbIndicators")
-];
-
-function loadData(){
-    return new Promise((resolve) => {
-        storeCsvAsDb("Data/toplevel.csv", getDbByName("dbTopLevel")).then(() =>        
-        storeCsvAsDb("Data/midlevel.csv", getDbByName("dbMidLevel"))).then(() =>
-        storeCsvAsDb("Data/indicators.csv", getDbByName("dbIndicators")))
-        .then(() => { 
-            resolve(); });  
-    });
-}
-
-function InitDatabase(name){
-    return {
-        name:name,
-        db:TAFFY(),
-        displayDb:TAFFY(),
-        headers:[],
-        colWidth:0,
-        orderBy:"",
-        orderDesc:true,
-        filter:""
-    }
-}
-
 function storeCsvAsDb(path, db){    
     return new Promise((success, error) => {
       try {

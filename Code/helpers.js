@@ -1,6 +1,6 @@
 function countNonIdHeaders(headers){
     var count= 0;
-    headers.forEach(header => {
+    headers.forEach(function (header) {
         if(!header.IsIdHeader()) count++;
     });
     return count;

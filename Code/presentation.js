@@ -1,4 +1,5 @@
 function presentDatabase(base){
+    currentDatabase = base;
     var html = "";
     html += presentHeader(base);        	
     html += presentRows(base);		    
@@ -31,21 +32,12 @@ function presentRows(base){
     var orderDirection = base.orderDesc ? " desc" : " asec";
 
     if(base.orderBy != ""){  
-        base.displayDb.sort(base.orderBy + orderDirection)
-    }    
-    return base.displayDb().supplant(rowTemplate);
-}
+        base.db.sort(base.orderBy + orderDirection)
+    }   
 
-function orderData(dbName, columnName){
-    var base = getDbByName(dbName);
+    if(base.filter != ""){  
+        return base.db({NAME:{likenocase:base.filter}}).supplant(rowTemplate);
+    }     
 
-    if(base.orderBy === columnName){
-        console.log("flipping from desc = ", base.orderDesc, "to", !base.orderDesc);
-        base.orderDesc = !base.orderDesc;
-    }
-    else{
-        base.orderBy=columnName;
-    }
-
-    $("#body").html(presentDatabase(base));
+    return base.db().supplant(rowTemplate);
 }
