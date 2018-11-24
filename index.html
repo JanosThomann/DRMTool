@@ -17,8 +17,7 @@
 		<script>
 			$(document).ready(function(){
 				loadData().then(() => {		
-					console.log(dbTopLevel.db().get())	
-					$("#body").html(PresentDatabase(dbTopLevel));
+					$("#body").html(presentDatabase(databases[0]));
 				});
 			});
 		</script>

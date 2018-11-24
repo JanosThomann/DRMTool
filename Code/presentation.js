@@ -1,27 +1,51 @@
-function PresentDatabase(base){
+function presentDatabase(base){
     var html = "";
-    html += PresentHeader(base);        	
-    html += PresentRows(base);		    
+    html += presentHeader(base);        	
+    html += presentRows(base);		    
     return html;
 }
 
-function PresentHeader(base){
-    var headerHtml = "<div class='row navigation-header'>";
+function presentHeader(base){
+    var headerHtml = "<div class='row navigation-headers'>";
     base.headers.forEach(function (item) {	
         if(item.toLowerCase().indexOf("id") == -1)
-        headerHtml +="<div class='col-" + base.colWidth + "'>" + item + "</div>"; 
+        headerHtml += 
+        "<div class='navigation-header col-" + base.colWidth + "'" + 
+        "onclick=orderData(" + 
+        wrapQuotes(base.name) + "," + 
+        wrapQuotes(item) + ")>" + item + 
+        "</div>"; 
     });
     headerHtml +="</div>"	
     return headerHtml;
 }
 
-function PresentRows(base){
-    var supplantRows = "<div class='row navigation-row'>";
+function presentRows(base){
+    var rowTemplate = "<div class='row navigation-row'>";
     base.headers.forEach(function (header) {
         if(!header.IsIdHeader()) {
-            supplantRows += "<div class='col-" + base.colWidth + "'>{" + header + "}</div>";
+            rowTemplate += "<div class='col-" + base.colWidth + "'>{" + header + "}</div>";
         }
     });
-    supplantRows += "</div>"; 
-    return base.db().supplant(supplantRows);
+    rowTemplate += "</div>";
+    var orderDirection = base.orderDesc ? " desc" : " asec";
+
+    if(base.orderBy != ""){  
+        base.displayDb.sort(base.orderBy + orderDirection)
+    }    
+    return base.displayDb().supplant(rowTemplate);
+}
+
+function orderData(dbName, columnName){
+    var base = getDbByName(dbName);
+
+    if(base.orderBy === columnName){
+        console.log("flipping from desc = ", base.orderDesc, "to", !base.orderDesc);
+        base.orderDesc = !base.orderDesc;
+    }
+    else{
+        base.orderBy=columnName;
+    }
+
+    $("#body").html(presentDatabase(base));
 }

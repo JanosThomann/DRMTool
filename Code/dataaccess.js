@@ -1,29 +1,31 @@
 // data storage config
-var dbTopLevel = {
-    db:TAFFY(),
-    headers:[],
-    colWidth:2
-};
-
-var dbMidLevel = {
-    db:TAFFY(),
-    headers:[],
-    colWidth:2
-};
-
-var dbIndicators = {
-    db:TAFFY(),
-    headers:[],    
-    colWidth:2
-};
+var databases = [
+    InitDatabase("dbTopLevel"),
+    InitDatabase("dbMidLevel"),
+    InitDatabase("dbIndicators")
+];
 
 function loadData(){
     return new Promise((resolve) => {
-        storeCsvAsDb("Data/toplevel.csv", dbTopLevel).then(() =>
-        storeCsvAsDb("Data/midlevel.csv", dbMidLevel).then(() =>
-        storeCsvAsDb("Data/indicators.csv", dbIndicators)))
-        .then(() => { resolve(); });  
+        storeCsvAsDb("Data/toplevel.csv", getDbByName("dbTopLevel")).then(() =>        
+        storeCsvAsDb("Data/midlevel.csv", getDbByName("dbMidLevel"))).then(() =>
+        storeCsvAsDb("Data/indicators.csv", getDbByName("dbIndicators")))
+        .then(() => { 
+            resolve(); });  
     });
+}
+
+function InitDatabase(name){
+    return {
+        name:name,
+        db:TAFFY(),
+        displayDb:TAFFY(),
+        headers:[],
+        colWidth:0,
+        orderBy:"",
+        orderDesc:true,
+        filter:""
+    }
 }
 
 function storeCsvAsDb(path, db){    
@@ -31,11 +33,13 @@ function storeCsvAsDb(path, db){
       try {
           $.ajax({url:path,dataType:"text",
             success:function(data)
-                {mapCsvToDataStructure(data, db).then(() => success(db));}
+                {
+                    mapCsvToDataStructure(data, db)
+                    .then(() => success(db));}
             });            
       } catch (ex) {
-        error();
-      }
+          error(ex);
+        }
   });
 }
 
@@ -45,7 +49,7 @@ function mapCsvToDataStructure(data, base){
             var rows = data.split(/\r?\n|\r/);
             var headers = rows[0].split(";");
 
-            base.colWidth = Math.floor(12 / CountNonIdHeaders(headers));
+            base.colWidth = Math.floor(12 / countNonIdHeaders(headers));
 
             base.headers = headers;
 
@@ -59,7 +63,10 @@ function mapCsvToDataStructure(data, base){
                 }   
                 insertString += "}";
                 base.db.insert(insertString);
-            };
+            };       
+            // we only use display db from now on  
+            // in order to work from memory
+            base.displayDb = base.db;     
             resolve(base);                      
         } catch (error) {
             reject(error);

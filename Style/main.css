@@ -1,13 +1,28 @@
-.navigation-header{
+.navigation-headers{
     padding: 10px;
     margin: 10px;
     font-size: 20px; 
+    height: 60px;
     font-weight: bold;
     border-bottom: 3px solid darkslategray;
 }
+.navigation-header:hover{
+    cursor: pointer;
+}
 
+.navigation-header:hover::after{
+    
+   content: '\f0dc';
+   font-family: FontAwesome;
+   font-weight: normal;
+   font-style: normal;
+   margin-left: 35px;
+   margin-top: -22px;
+   text-decoration:none;
+}
 
 .navigation-row{
+    color: #777;
     cursor: pointer;
     padding: 10px;
     margin: 10px;
@@ -16,15 +31,16 @@
 }
 
 .navigation-row:hover{
-    border-bottom: 2px solid #efefef;    
+    border-bottom: 2px solid #efefef;   
+    color: black; 
 }
 .navigation-row:hover::after{
     
-   content: '\f105';
+   content: '\f105\f105';
    font-family: FontAwesome;
    font-weight: normal;
    font-style: normal;
-   float: right;
+   margin-left: -15px;
    text-decoration:none;
 }
 
