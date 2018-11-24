@@ -1,0 +1,30 @@
+.navigation-header{
+    padding: 10px;
+    margin: 10px;
+    font-size: 20px; 
+    font-weight: bold;
+    border-bottom: 3px solid darkslategray;
+}
+
+
+.navigation-row{
+    cursor: pointer;
+    padding: 10px;
+    margin: 10px;
+    font-size: 20px; 
+    border-bottom: 2px solid white;
+}
+
+.navigation-row:hover{
+    border-bottom: 2px solid #efefef;    
+}
+.navigation-row:hover::after{
+    
+   content: '\f105';
+   font-family: FontAwesome;
+   font-weight: normal;
+   font-style: normal;
+   float: right;
+   text-decoration:none;
+}
+

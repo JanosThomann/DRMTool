@@ -1,0 +1,31 @@
+﻿<html>
+	<head>
+		<!--scripts-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script src="Code/taffy.js"></script>
+		<script src="Code/extensions.js"></script>
+		<script src="Code/helpers.js"></script>
+		<script src="Code/dataaccess.js"></script>
+		<script src="Code/presentation.js"></script>
+		<script src="Code/taffy.js"></script>
+		
+		<!--styles-->
+		<link  rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+		<link  rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link  rel="stylesheet" href="Style/main.css">
+
+		<script>
+			$(document).ready(function(){
+				loadData().then(() => {		
+					console.log(dbTopLevel.db().get())	
+					$("#body").html(PresentDatabase(dbTopLevel));
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<h1 class="container">toni test</h1>
+		<div id="body" class="container" /> 
+	</body>
+				
+</html>
