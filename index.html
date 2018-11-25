@@ -2,6 +2,7 @@
 	<head>
 		<!--scripts-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script src="//cdn.jsdelivr.net/npm/bluebird@3.5.3/js/browser/bluebird.min.js"></script>
 		<script src="Code/libraries/taffy.js"></script>
 		<script src="Code/extensions.js"></script>
 		<script src="Code/helpers.js"></script>
@@ -17,9 +18,9 @@
 		<link  rel="stylesheet" href="Style/grid.css">
 
 		<script>
-			$(document).ready(function(){
-				loadData().then(() => {		
-					$("#data").html(presentDatabase(databases[0]));
+			$(document).ready(function() {
+				loadData().then(function () {		
+					presentDatabase(databases[0]);
 				});
 			});
 		</script>
@@ -27,7 +28,14 @@
 	<body class="container">
 		<br>
 		<h1>CSV Presenter</h1>
-		<hr/>
+		<hr/>		
+		<div class="iconbar">
+			<i 	class="fa fa-home icon"
+			title="return to top tier navigation"
+				onclick="presentDatabase(databases[0]);">
+			</i>
+		</div>		
+
 		<input 
 			onkeyup="filterData(this.value)"
 			type="text" 

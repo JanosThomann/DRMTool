@@ -2,7 +2,7 @@
     float: right;
     width: 300px;
     height: 30px;
-    padding: 10px;
+    padding-left: 15px;
 }
 
 .input:after{        
@@ -11,5 +11,32 @@
    font-weight: normal;
    font-style: normal;
    margin-left: 20px;
-   text-decoration:none;
+    font-size: 40;
+}
+
+.text{
+    font-size: 24;
+    margin:50px; 
+    font-weight:lighter;
+}
+
+
+h1{
+    font-weight: lighter;
+    font-size: 40;
+}
+
+.iconbar {
+    display: inline;
+}
+
+.icon {
+    font-size: 26;
+    color: #aaa;
+    cursor: pointer;
+    margin-right: 20px;
+    display: inline;    
+}
+.icon:hover {
+    color: #666;
 }

@@ -1,20 +1,20 @@
 function storeCsvAsDb(path, db){    
-    return new Promise((success, error) => {
+    return new Promise(function (resolve, reject) {
       try {
           $.ajax({url:path,dataType:"text",
             success:function(data)
                 {
                     mapCsvToDataStructure(data, db)
-                    .then(() => success(db));}
+                    .then(function () {resolve(db)});}
             });            
       } catch (ex) {
-          error(ex);
+            reject(ex);
         }
   });
 }
 
 function mapCsvToDataStructure(data, base){
-    return new Promise((resolve, reject) => {
+    return new Promise(function (resolve, reject) {
         try {
             var rows = data.split(/\r?\n|\r/);
             var headers = rows[0].split(";");
@@ -25,13 +25,15 @@ function mapCsvToDataStructure(data, base){
 
             for (i = 1; i < rows.length; i++) {
                 var insertString = "{";
+                var filterString = '"FILTER":"';
                 var items = rows[i].split(";");
 
                 for (j = 0; j < items.length; j++) { 
-                    insertString += '"' + headers[j] + '"' + ":" + '"' + items[j] + '"';
-                    if(j < items.length - 1) insertString += ",";
+                    insertString += '"' + headers[j] + '"' + ":" + '"' + items[j] + '",';
+                    filterString += items[j];
                 }   
-                insertString += "}";
+
+                insertString += filterString + '"}';
                 base.db.insert(insertString);
             };       
             // we only use display db from now on  
