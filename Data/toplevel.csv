@@ -1,6 +1,6 @@
-ID;NAME;COLOR;letters
-1;Top Level Cat 1;red;q
-2;category 2;black;aab
-3;point 3;yellow;e
-4;element 4;green;dd
-5;thing 5;blue;r
+ID;NAME;COLOR;VALUE;VALUE2
+1;avoid new risks;Beige;123;A
+2;prevent and mitigate impact;black;234;B
+3;prepare and respond;yellow;547;C
+4;transfer and share;green;567;D
+5;bear;blue;869;E

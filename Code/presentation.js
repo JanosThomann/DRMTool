@@ -2,8 +2,9 @@ function presentDatabase(base){
     currentDatabase = base;
     var html = "";
     html += presentHeader(base);        	
-    html += presentRows(base);		    
+    html += presentRows(base);		
     $('#data').html(html);
+    console.log(html);
 }
 
 function presentHeader(base){
@@ -24,8 +25,6 @@ function getOrderEvent(base, item){
     wrapQuotes(item) + ")";
 }
 
-
-
 function presentRows(base){
 
     var rowTemplate = 
@@ -45,6 +44,7 @@ function presentRows(base){
     }   
 
     var query = base.db(function () {
+        
         //filtering search bar
         if(this.FILTER.toLowerCase()
         .indexOf(base.filter.toLowerCase()) == -1) 
@@ -52,11 +52,10 @@ function presentRows(base){
 
         //filtering parent ID
         var parentId = this[base.parentIdName];
-        if(parentId && parentId != base.parentId) return false;
-        
+        console.log(this, parentId, base.parentId)
+        if(parentId && parentId != base.parentId) return false;        
         return true;
-        });
-
+    });
     if(query.count()==0) return getNoRecordsInfo();
 
     return query.supplant(rowTemplate);
@@ -64,9 +63,12 @@ function presentRows(base){
 }
 
 function getNoRecordsInfo(){
-    return "<center class='text'>" + 
-            "sorry, no data!" +
-            "</center>";
+    return "<center>" + 
+        "<p  class='text'>sorry, no data!</p>" +
+        "<hr style='width:600px;'>" +
+        "<button  type='button' class='btn btn-outline-secondary ' onclick='clearFilters()'>clear all filters</button>" +
+        "<button  type='button' class='btn btn-outline-secondary ' onclick='navigateUp()'>navigate up</button>" +
+    "</center>";
 }
 
 function getChildren(baseName, parentId){

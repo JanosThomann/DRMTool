@@ -10,6 +10,10 @@ function getDbByName(name) {
     return findObjectByKey(databases, 'name', name);
 }
 
+function getDbByChildName(name) {   
+    return findObjectByKey(databases, 'childDbName', name);
+}
+
 function findObjectByKey(array, key, value) {
     for (var i = 0; i < array.length; i++) {
         if (array[i][key] === value) {

@@ -13,5 +13,18 @@ function filterData(filter){
     databases.forEach(function (db) {
         db.filter = filter;
     });
-    $("#data").html(presentDatabase(currentDatabase));
+    presentDatabase(currentDatabase);
+}
+
+function clearFilters(){
+    $("#filter").val('');
+    databases.forEach(function (db) {        
+        db.filter = "";
+    }); 
+    presentDatabase(currentDatabase);
+}
+
+function navigateUp() {
+    currentDatabase = getDbByChildName(currentDatabase.name);    
+    presentDatabase(currentDatabase);
 }
