@@ -90,9 +90,12 @@ h2{
     text-align: right;
     font-weight: 700;
     font-size: 26px;
-    margin-left: 15px;
     height: auto;
     border-bottom: 3px dashed  gray
+}
+
+.overviewElement-title{
+    padding: 10px;
 }
 
 .clickable{    
@@ -104,6 +107,9 @@ h2{
 }
 
 .detail{
+    padding: 10px;
+    font-size: 22px;
+    font-weight: 400;
     float: left;
     display: none;
 }
