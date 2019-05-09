@@ -1,0 +1,14 @@
+.detailRow{
+    margin: 10px;
+    margin-bottom: 25px;
+}
+
+.detailAttribute{
+    text-align: right;
+    font-weight: 700;
+    padding-right: 50px;
+}
+
+.detailValue{
+    border-top: 1px solid #666;
+}

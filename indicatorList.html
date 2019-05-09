@@ -1,0 +1,62 @@
+﻿<html>
+	<head>
+		<!--scripts-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/jszip.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script src="//cdn.jsdelivr.net/npm/bluebird@3.5.3/js/browser/bluebird.min.js"></script>
+		<script src="Code/libraries/taffy.js"></script>
+		<script src="Code/extensions.js"></script>
+		<script src="Code/helpers.js"></script>
+		<script src="Code/templates.js"></script>
+		<script src="Code/dataaccess.js"></script>
+		<script src="Code/presentation.js"></script>
+		<script src="Code/uiControls.js"></script>
+		
+		<!--styles-->
+		<link  rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+		<link  rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link  rel="stylesheet" href="Style/tooltip.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/balloon-css/0.5.0/balloon.min.css">
+
+		<link  rel="stylesheet" href="Style/main.css">
+		<link  rel="stylesheet" href="Style/grid.css">
+		<link  rel="stylesheet" href="Style/hover.css">
+
+		<script>
+			$(document).ready(function() {
+				loadData().then(function () {
+					presentDatabase(database);
+				});
+			});
+		</script>
+	</head>
+
+
+	<body class="container">
+		<br>
+		<h1 id=listHeader></h1>
+		<div class="iconbar">
+			<a href="index.html">				
+				<i 	class="fa fa-home tinyIcon"
+					title="return to main page">
+				</i><span class="iconBarText"> overview </span>
+			</a>
+			<a href="indicatorList.html">				
+					<i 	class="fa fa-list tinyIcon"
+						title="show full indicator list">
+					</i><span class="iconBarText"> full list </span>
+			</a>
+		</div>		
+
+		<input 
+			onkeyup="filterData(this.value)"
+			type="text" 
+			id="filter" 
+			placeholder="filter..." 
+			class="input"/>
+		<br>
+		<div id="indicatorList" /> 
+	</body>
+				
+</html>

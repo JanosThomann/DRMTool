@@ -1,0 +1,23 @@
+.avoidNewRisks{
+    background-color: #d4e2ef;	
+    border: 1px solid #82a1bd; 
+    border-right: 10px solid #82a1bd;
+}
+
+.preventAndMitigateImpact{
+    background-color: #ecf2db; 
+    border: 1px solid #b3bf86; 
+    border-right: 10px solid #b3bf86;
+}
+
+.prepareAndRespond, .transferAndShare {
+    background-color: #fde2cf; 
+    border: 1px solid #c99d7d; 
+    border-right: 10px solid #c99d7d;
+}
+
+.bear{
+    background-color: #fbdad3; 
+    border: 1px solid #c78c7f; 
+    border-right: 10px solid #c78c7f;
+}

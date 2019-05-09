@@ -1,12 +1,12 @@
 ﻿<html>
 	<head>
 		<!--scripts-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 		<script src="//cdn.jsdelivr.net/npm/bluebird@3.5.3/js/browser/bluebird.min.js"></script>
 		<script src="Code/libraries/taffy.js"></script>
 		<script src="Code/extensions.js"></script>
 		<script src="Code/helpers.js"></script>
-		<script src="Code/databaseBuilder.js"></script>
 		<script src="Code/dataaccess.js"></script>
 		<script src="Code/presentation.js"></script>
 		<script src="Code/uiControls.js"></script>
@@ -16,38 +16,115 @@
 		<link  rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link  rel="stylesheet" href="Style/main.css">
 		<link  rel="stylesheet" href="Style/grid.css">
+		<link  rel="stylesheet" href="Style/hover.css">
+		<link  rel="stylesheet" href="Style/stairs.css">
 
 		<script>
-			$(document).ready(function() {
-				loadData().then(function () {		
-					presentDatabase(databases[0]);
-				});
-			});
+			function toggleDetails(id){
+				console.log("*");
+				$("#detail-" + id).slideToggle();
+				$("#switch-"+ id).toggleClass("collapsed");
+				$("#switch-"+ id).toggleClass("expanded");				
+			}
 		</script>
+
 	</head>
 	<body class="container">
 		<br>
-		<h1>CSV Presenter</h1>
-		<hr/>		
+		<h1>Online Indicator Toolbox</h1>
 		<div class="iconbar">
-			<i 	class="fa fa-home icon"
-			title="return to top tier navigation"
-				onclick="presentDatabase(databases[0]);">
-			</i>
-			<i 	class="fa fa-chevron-up icon"
-			title="return to top tier navigation"
-				onclick="navigateUp();">
-			</i>
-		</div>		
-
-		<input 
-			onkeyup="filterData(this.value)"
-			type="text" 
-			id="filter" 
-			placeholder="filter..." 
-			class="input"/>
+			<a href="indicatorList.html">				
+					<i 	class="fa fa-list tinyIcon"
+						title="show full indicator list">
+					</i><span class="iconBarText"> full indicator list </span>
+			</a>
+			<a href="Data/indicators.xlsx">				
+					<i 	class="fa fa-download tinyIcon"
+						title="download full indicator list">
+					</i><span class="iconBarText"> download indicator list </span>
+			</a>
+		</div>	
 		<br>
-		<div id="data" /> 
+		<br>
+
+		<h2>DRR Staircase</h2>	
+		<br>
+		<div class="container">
+			
+			<div class="row overviewElement">
+				<div class="col-7 hvr-grow clickable avoidNewRisks" 
+				onclick="window.location='indicatorList.html?stair=avoid new risks'">
+					avoid new risks
+					<div id="detail-avoidnewrisks" class="detail pull-right">
+						noiss!
+					</div>
+				</div>
+				<div>
+					<i id="switch-avoidnewrisks" 
+					class="fa fa-chevron-down switch collapsed" 
+					onclick="toggleDetails('avoidnewrisks')"></i>
+				</div>
+			</div> 
+
+			<div class="row overviewElement">
+				<div class="col-8 hvr-grow clickable preventAndMitigateImpact" 
+				onclick="window.location='indicatorList.html?stair=avoid new risks'">
+					prevent and mitigate impact
+					<div id="detail-preventandmitigateimpact" class="detail pull-right">
+						noiss!
+					</div>
+				</div>
+				<div>
+					<i id="switch-preventandmitigateimpact" 
+					class="fa fa-chevron-down switch collapsed" 
+					onclick="toggleDetails('preventandmitigateimpact')"></i>
+				</div>
+			</div> 
+					
+			<div class="row overviewElement">
+					<div class="col-9 hvr-grow clickable prepareAndRespond" 
+					onclick="window.location='indicatorList.html?stair=avoid new risks'">
+						prepare & respond
+						<div id="detail-prepareandrespond" class="detail pull-right">
+							noiss!
+						</div>
+					</div>
+					<div>
+						<i id="switch-prepareandrespond" 
+						class="fa fa-chevron-down switch collapsed" 
+						onclick="toggleDetails('prepareandrespond')"></i>
+					</div>
+				</div> 
+					
+			<div class="row overviewElement">
+				<div class="col-10 hvr-grow clickable transferAndShare" 
+				onclick="window.location='indicatorList.html?stair=avoid new risks'">
+					transfer & share
+					<div id="detail-transferandshare" class="detail pull-right">
+						noiss!
+					</div>
+				</div>
+				<div>
+					<i id="switch-transferandshare" 
+					class="fa fa-chevron-down switch collapsed" 
+					onclick="toggleDetails('transferandshare')"></i>
+				</div>
+			</div> 
+
+			<div class="row overviewElement">
+				<div class="col-11 hvr-grow clickable bear" 
+				onclick="window.location='indicatorList.html?stair=avoid new risks'">
+				bear
+					<div id="detail-bear" class="detail pull-right">
+						noiss!
+					</div>
+				</div>
+				<div>
+					<i id="switch-bear" 
+					class="fa fa-chevron-down switch collapsed" 
+					onclick="toggleDetails('bear')"></i>
+				</div>
+			</div> 			
+		</div>
 	</body>
-				
 </html>

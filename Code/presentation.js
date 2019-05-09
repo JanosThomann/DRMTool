@@ -1,80 +1,62 @@
 function presentDatabase(base){
-    currentDatabase = base;
     var html = "";
-    html += presentHeader(base);        	
+    html += presentHeader();        	
     html += presentRows(base);		
-    $('#data').html(html);
-    console.log(html);
+    $('#indicatorList').html(html);
 }
 
-function presentHeader(base){
-    var headerHtml = "<div class='row navigation-headers'>";
-    base.headers.forEach(function (item) {	
-    var css = "class='navigation-header col-" + base.colWidth + "' ";
-    if(item.toLowerCase().indexOf("id") == -1)
-        {headerHtml += 
-            "<div " + css + getOrderEvent(base, item) + ">" + 
-                item +
-            "</div>";}});
-    return headerHtml +="</div>";
+function presentDetail(indicatorCode){
+
+    loadData().then(function() {
+        var html = "";
+        console.log(indicatorCode)
+        var indicator = database.data().filter({"Code":indicatorCode}).first();
+        Object.keys(indicator).forEach(function(attr) {
+            if(attr.substring(0, 1) !== "_"){
+                html += detailPropertyTemplate(attr, indicator[attr]);
+            }
+        });  
+        $("#detail").html(html);   
+    });      
 }
 
-function getOrderEvent(base, item){
-    return "onclick=orderData(" + 
-    wrapQuotes(base.name) + "," + 
-    wrapQuotes(item) + ")";
+function presentHeader(){
+    var stair = getStair();
+    if(stair){
+        $("#listHeader").html("indicators for stair " + wrapQuotes(stair));
+    }
+    else{
+        $("#listHeader").html("full indicator list");
+    }   
+    return headerTemplate();
+}
+
+function getOrderEvent(columnname){
+    return "onclick=orderData(" + wrapQuotes(columnname) + ")";
 }
 
 function presentRows(base){
-
-    var rowTemplate = 
-    "<div class='row navigation-row' " + 
-    "onclick='getChildren(" + wrapQuotes(base.name) + ", {ID})'>";
-
-    base.headers.forEach(function (header) {
-        if(!header.IsIdHeader()) {
-            rowTemplate += "<div class='col-" + base.colWidth + "'>{" + header + "}</div>";
-        }
-    });
-    rowTemplate += "</div>";
+    
     var orderDirection = base.orderDesc ? " logicaldesc" : " logical";
 
     if(base.orderBy != ""){  
-        base.db.sort(base.orderBy + orderDirection)
+        base.data.sort(base.orderBy + orderDirection)
     }   
 
-    var query = base.db(function () {
-        
-        //filtering search bar
-        if(this.FILTER.toLowerCase()
-        .indexOf(base.filter.toLowerCase()) == -1) 
-        return false;
-
-        //filtering parent ID
-        var parentId = this[base.parentIdName];
-        console.log(this, parentId, base.parentId)
-        if(parentId && parentId != base.parentId) return false;        
-        return true;
+    var query = base.data(function () {        
+        // //filtering search bar
+        if((this.Code.toLowerCase().indexOf(base.filter.toLowerCase()) != -1 || this.Indicator.toLowerCase().indexOf(base.filter.toLowerCase()) != -1) && 
+        (this._RiskStair === getStair() || !getStair())) {
+            return true;
+        }
+        else{
+            return false;
+        }
     });
-    if(query.count()==0) return getNoRecordsInfo();
-
-    return query.supplant(rowTemplate);
-
+    if(query.count()==0) return noRecordsTemplate();
+    return query.supplant(rowTemplate());
 }
 
-function getNoRecordsInfo(){
-    return "<center>" + 
-        "<p  class='text'>sorry, no data!</p>" +
-        "<hr style='width:600px;'>" +
-        "<button  type='button' class='btn btn-outline-secondary ' onclick='clearFilters()'>clear all filters</button>" +
-        "<button  type='button' class='btn btn-outline-secondary ' onclick='navigateUp()'>navigate up</button>" +
-    "</center>";
-}
-
-function getChildren(baseName, parentId){
-    var base = getDbByName(baseName);
-    if(base.childDbName == "") return;
-    var childBase = getDbByName(base.childDbName);
-    childBase.parentId = parentId;
-    presentDatabase(childBase);
+function getDetail(id){
+    window.location = 'detail.html?code=' + id;
 }

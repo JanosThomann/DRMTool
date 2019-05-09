@@ -6,14 +6,6 @@ function countNonIdHeaders(headers){
     return count;
 }
 
-function getDbByName(name) {   
-    return findObjectByKey(databases, 'name', name);
-}
-
-function getDbByChildName(name) {   
-    return findObjectByKey(databases, 'childDbName', name);
-}
-
 function findObjectByKey(array, key, value) {
     for (var i = 0; i < array.length; i++) {
         if (array[i][key] === value) {
@@ -26,3 +18,18 @@ function findObjectByKey(array, key, value) {
 function wrapQuotes(string){
     return '"' + string + '"';
 }
+
+function getStair(){
+    return getUrlParameter('stair');
+}
+
+function getIndicatorCode(){
+    return getUrlParameter('code');
+}
+
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};

@@ -23,25 +23,44 @@
 
 .navigation-row{
     font-weight: lighter;
-    color: #777;
     cursor: pointer;
-    padding: 10px;
-    margin: 10px;
-    font-size: 20px; 
-    border-bottom: 2px solid white;
+    margin-left: 20px;
+    margin-right: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .navigation-row:hover{
-    border-bottom: 2px solid #efefef;   
     color: black; 
 }
 .navigation-row:hover::after{
     
    content: '\f105\f105';
+   color: black;
    font-family: FontAwesome;
    font-weight: normal;
    font-style: normal;
    margin-left: -15px;
    text-decoration:none;
+}
+
+.isStandardIndicator-true{
+    visibility: visible !important;
+}
+
+.indicatorHint{
+    margin-left: 10px;
+    visibility: hidden;
+    color: darkred;
+}
+
+.indicator-card{
+    background: #e2e2e2;
+    color: black ;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 16px;
 }
 

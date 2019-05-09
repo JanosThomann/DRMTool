@@ -1,50 +1,51 @@
-function storeCsvAsDb(path, db){    
-    return new Promise(function (resolve, reject) {
-      try {
-          $.ajax({url:path,dataType:"text",
-            success:function(data)
-                {
-                    mapCsvToDataStructure(data, db)
-                    .then(function () {resolve(db)});}
-            });            
-      } catch (ex) {
-            reject(ex);
-        }
-  });
+// data storage config
+var database = InitDatabase();
+
+function InitDatabase(){
+    return {
+        data:TAFFY(),
+        headers:[],
+        colWidth:0,
+        orderBy:"",
+        orderDesc:true,
+        filter:""
+    }
 }
 
-function mapCsvToDataStructure(data, base){
+var currentDatabase;
+
+function loadData(){
+    InitDatabase();
+    console.log('loading db...')
+    return new Promise(function (resolve){
+        resolve(storeIndicatorsAsDatabase(database));
+    });
+};
+
+function storeIndicatorsAsDatabase(database){
     return new Promise(function (resolve, reject) {
-        try {
-            var rows = data.split(/\r?\n|\r/);
-            var headers = rows[0].split(";");
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/Data/indicators.xlsx', true);
+        xhr.responseType = 'arraybuffer';
 
-            base.colWidth = Math.floor(12 / countNonIdHeaders(headers));
-
-            base.headers = headers;
-
-            for (i = 1; i < rows.length; i++) {
-                var insertString = "{";
-                var filterString = '"FILTER":"';
-                var items = rows[i].split(";");
-
-                for (j = 0; j < items.length; j++) { 
-                    insertString += '"' + headers[j] + '"' + ":" + '"' + items[j] + '",';
-                    filterString += items[j];
-                }   
-
-                insertString += filterString + '"}';
-                base.db.insert(insertString);
-            };       
-            // we only use display db from now on  
-            // in order to work from memory
-            base.displayDb = base.db;     
-            resolve(base);                      
-        } catch (error) {
-            reject(error);
+        xhr.onload = function(e) {
+            if (this.status == 200) {
+                var arr = new Array();
+                var data = new Uint8Array(xhr.response);
+                for (var i = 0; i != data.length; ++i) {
+                    arr[i] = String.fromCharCode(data[i]);
+                }
+                var bstr = arr.join("");
+                var workbook = XLSX.read(bstr, {type: "binary"});
+                var rows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets["indicators"]);
+                database.headers = XLSX.utils.sheet_to_row_object_array(workbook.Sheets["indicators"], {header:1})[0];
+                for (var i = 1; i < rows.length; i++) {
+                    var element = rows[i];   
+                    database.data.insert(element);                   
+                }
+            };
+            resolve(database);
         }
+        xhr.send();
     });
 }
-
-
-       

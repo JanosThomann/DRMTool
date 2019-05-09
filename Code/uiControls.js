@@ -1,30 +1,22 @@
+function orderData(columnName){
+    if  (database.orderBy === columnName) {database.orderDesc = !database.orderDesc;}
+    else{database.orderBy=columnName;}
 
-function orderData(dbName, columnName){
-    var base = getDbByName(dbName);
-
-    if  (base.orderBy === columnName) {base.orderDesc = !base.orderDesc;}
-    else{base.orderBy=columnName;}
-
-    $("#data").html(presentDatabase(base));
+    $("#indicatorList").html(presentDatabase(database));
 }
 
 function filterData(filter){
 
-    databases.forEach(function (db) {
-        db.filter = filter;
-    });
-    presentDatabase(currentDatabase);
+    database.filter = filter;
+    presentDatabase(database);
 }
 
 function clearFilters(){
     $("#filter").val('');
-    databases.forEach(function (db) {        
-        db.filter = "";
-    }); 
-    presentDatabase(currentDatabase);
+    database.filter = "";
+    presentDatabase(database);
 }
 
-function navigateUp() {
-    currentDatabase = getDbByChildName(currentDatabase.name);    
-    presentDatabase(currentDatabase);
+function navigateUp() { 
+    presentDatabase(database);
 }
