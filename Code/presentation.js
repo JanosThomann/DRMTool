@@ -46,7 +46,8 @@ function presentRows(base){
     var query = base.data(function () {        
         // //filtering search bar
         if((this.Code.toLowerCase().indexOf(base.filter.toLowerCase()) != -1 || this.Indicator.toLowerCase().indexOf(base.filter.toLowerCase()) != -1) && 
-        (this._RiskStair === getStair() || !getStair())) {
+        (this._RiskStair === getStair() || !getStair()) &&
+        (this.Outcome === getOutcome() || !getOutcome())) {
             return true;
         }
         else{
@@ -60,3 +61,19 @@ function presentRows(base){
 function getDetail(id){
     window.location = 'detail.html?code=' + id;
 }
+
+$(document).ready(function() {        
+    $('.preventImpact').mouseenter(function(event) {
+        $('.preventAndMitigateImpact').addClass('preventAndMitigateImpactHover');
+    })
+    $('.preventAndMitigateImpact').mouseenter(function(event) {
+        $('.preventAndMitigateImpact').addClass('preventAndMitigateImpactHover');
+    })
+
+    $('.preventImpact').mouseleave(function(event) {
+        $('.preventAndMitigateImpact').removeClass('preventAndMitigateImpactHover');
+    })
+    $('.preventAndMitigateImpact').mouseleave(function(event) {
+        $('.preventAndMitigateImpact').removeClass('preventAndMitigateImpactHover');
+    })
+})

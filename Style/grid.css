@@ -10,8 +10,7 @@
     cursor: pointer;
 }
 
-.navigation-header:hover::after{
-    
+.navigation-header:hover::after{    
    content: '\f0dc';
    font-family: FontAwesome;
    font-weight: normal;
@@ -30,37 +29,17 @@
     margin-bottom: 20px;
 }
 
-.navigation-row:hover{
-    color: black; 
-}
-.navigation-row:hover::after{
-    
-   content: '\f105\f105';
-   color: black;
-   font-family: FontAwesome;
-   font-weight: normal;
-   font-style: normal;
-   margin-left: -15px;
-   text-decoration:none;
-}
 
 .isStandardIndicator-true{
-    visibility: visible !important;
-}
-
-.indicatorHint{
-    margin-left: 10px;
-    visibility: hidden;
-    color: darkred;
+    color: red;
+    font-size: 24px !important;
 }
 
 .indicator-card{
-    background: #e2e2e2;
-    color: black ;
+    color: black;
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
     font-size: 16px;
 }
-

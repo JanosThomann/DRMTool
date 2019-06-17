@@ -18,13 +18,12 @@
 		<link  rel="stylesheet" href="Style/grid.css">
 		<link  rel="stylesheet" href="Style/hover.css">
 		<link  rel="stylesheet" href="Style/stairs.css">
+		<link  rel="stylesheet" href="Style/detail.css">
 
 		<script>
-			function toggleDetails(id){
-				console.log("*");
-				$("#detail-" + id).slideToggle();
-				$("#switch-"+ id).toggleClass("collapsed");
-				$("#switch-"+ id).toggleClass("expanded");				
+			function showOutcome(outcomeName){				
+				event.stopPropagation();
+				window.location='indicatorList.html?outcome=' + outcomeName;
 			}
 		</script>
 
@@ -52,79 +51,98 @@
 		<div class="container">
 			
 			<div class="row overviewElement">
-				<div class="col-7 hvr-grow clickable avoidNewRisks" 
+				<div class="col-6 clickable avoidNewRisks" 
 				onclick="window.location='indicatorList.html?stair=avoid new risks'">
 					<div class="overviewElement-title">avoid new risks</div>
 					<div id="detail-avoidnewrisks" class="detail pull-right">
-						noiss!
+						
+						<h3>Outcomes</h3>
+
+						<div class="row outcome hvr-fade" onclick="showOutcome('Decision making is hazard and climate risk-sensitive');">
+							Decision making is hazard and climate risk-sensitive
+						</div>
+
+						<div class="row outcome hvr-fade" onclick="showOutcome('Hazard-prone areas are used risk-consciously');">
+							Hazard-prone areas are used risk-consciously
+						</div>
+
 					</div>
-				</div>
-				<div>
-					<i id="switch-avoidnewrisks" 
-					class="fa fa-chevron-down switch collapsed" 
-					onclick="toggleDetails('avoidnewrisks')"></i>
 				</div>
 			</div> 
-
-			<div class="row overviewElement">
-				<div class="col-8 hvr-grow clickable preventAndMitigateImpact" 
-				onclick="window.location='indicatorList.html?stair=avoid new risks'">
-				<div class="overviewElement-title">prevent and mitigate impact</div>
-					<div id="detail-preventandmitigateimpact" class="col-1 detail pull-right">
-						noiss!
-					</div>
+			<div class="row overviewElementNoBorder">
+				<div class="col-7 clickable preventImpact" 
+				onclick="window.location='indicatorList.html?stair=prevent and mitigate impact'">
+				<div class="overviewElement-title">prevent impact</div>
 				</div>
-				<div>
-					<i id="switch-preventandmitigateimpact" 
-					class="fa fa-chevron-down switch collapsed" 
-					onclick="toggleDetails('preventandmitigateimpact')"></i>
+			</div> 
+			<div class="row overviewElement">
+				<div class="col-8 clickable preventAndMitigateImpact" 
+				onclick="window.location='indicatorList.html?stair=prevent and mitigate impact'">
+				<div class="overviewElement-title">mitigate impact</div>
+					<div id="detail-preventandmitigateimpact" class="detail pull-right">
+						
+						<h3>Outcomes</h3>
+
+						<div class="row outcome hvr-fade" onclick="showOutcome('Agricultural production is climate-resilient');">
+							Agricultural production is climate-resilient
+						</div>
+
+						<div class="row outcome hvr-fade" onclick="showOutcome('People/households are economically flexible and independet from hazard and climate susceptible activities');">
+							People/households are economically flexible and independet from hazard and climate susceptible activities
+						</div>
+
+						<div class="row outcome hvr-fade" onclick="showOutcome('Natural resources are sustainably managed');">
+							Natural resources are sustainably managed
+						</div>
+
+					</div>
 				</div>
 			</div> 
 					
 			<div class="row overviewElement">
-				<div class="col-9 hvr-grow clickable prepareAndRespond" 
-				onclick="window.location='indicatorList.html?stair=avoid new risks'">
+				<div class="col-9 clickable prepareAndRespond" 
+				onclick="window.location='indicatorList.html?stair=prepare and respond'">
 					<div class="overviewElement-title">prepare & respond</div>
-					<div id="detail-prepareandrespond" class="col-1 detail pull-right">
-						noiss!
+					<div id="detail-prepareandrespond" class="detail pull-right">
+						
+						<h3>Outcomes</h3>
+
+						<div class="row outcome hvr-fade" onclick="showOutcome('Mechanisms/ strategies in place to cope adequately with hazards');">
+							Mechanisms/ strategies in place to cope adequately with hazards
+						</div>
+
+						<div class="row outcome hvr-fade" onclick="showOutcome('Emergency response  is appropriate to events');">
+							Emergency response  is appropriate to events
+						</div>
+
 					</div>
-				</div>
-				<div>
-					<i id="switch-prepareandrespond" 
-					class="fa fa-chevron-down switch collapsed" 
-					onclick="toggleDetails('prepareandrespond')"></i>
 				</div>
 			</div> 
 					
 			<div class="row overviewElement">
-				<div class="col-10 hvr-grow clickable transferAndShare" 
-				onclick="window.location='indicatorList.html?stair=avoid new risks'">
+				<div class="col-10 clickable transferAndShare" 
+				onclick="window.location='indicatorList.html?stair=transfer and share'">
 				<div class="overviewElement-title">transfer & share</div>
-					<div id="detail-transferandshare" class="col-1 detail pull-right">
-						noiss!
+					<div id="detail-transferandshare" class="detail pull-right">
+						
+						<h3>Outcomes</h3>
+
+						<div class="row outcome hvr-fade" onclick="showOutcome('Transfer and share mechanisms are functional and accessible');">
+							Transfer and share mechanisms are functional and accessible
+						</div>
+
 					</div>
-				</div>
-				<div>
-					<i id="switch-transferandshare" 
-					class="fa fa-chevron-down switch collapsed" 
-					onclick="toggleDetails('transferandshare')"></i>
 				</div>
 			</div> 
 
 			<div class="row overviewElement">
-				<div class="col-11 hvr-grow clickable bear" 
-				onclick="window.location='indicatorList.html?stair=avoid new risks'">
+				<div class="col-11 bear">
 				<div class="overviewElement-title">bear</div>
-					<div id="detail-bear" class="col-1 detail pull-right">
-						noiss!
-					</div>
 				</div>
-				<div>
-					<i id="switch-bear" 
-					class="fa fa-chevron-down switch collapsed" 
-					onclick="toggleDetails('bear')"></i>
-				</div>
-			</div> 			
+			</div> 	
 		</div>
+
+		<div class="knowTheRisks" onclick="window.location='indicatorList.html?stair=knowledge'">know the risks</div>
+
 	</body>
 </html>

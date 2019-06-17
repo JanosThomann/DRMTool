@@ -85,19 +85,6 @@ h2{
     margin-right: 20px;
 }
 
-.overviewElement{
-    padding-right: 40px;
-    text-align: right;
-    font-weight: 700;
-    font-size: 26px;
-    height: auto;
-    border-bottom: 3px dashed  gray
-}
-
-.overviewElement-title{
-    padding: 10px;
-}
-
 .clickable{    
     cursor: pointer;
 }
@@ -106,35 +93,11 @@ h2{
     float: right;
 }
 
-.detail{
-    padding: 10px;
-    font-size: 22px;
-    font-weight: 400;
-    float: left;
-    display: none;
+::-webkit-scrollbar { 
+    display: none; 
 }
 
-.switch {    
-    rotate: 0%;
-    font-size: 30px;
-    position: relative;
-    -webkit-transition: all .3s linear;
-    -moz-transition: all .3s linear;
-    -o-transition: all .3s linear;
-    transition: all .3s linear;
-}
-
-.switch.expanded {
-    -webkit-transform: rotate(180deg);
-    -moz-transform: rotate(180deg);
-    -o-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    transform: rotate(180deg);
-}
-.switch.collapsed {
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    transform: rotate(0deg);
+.body{
+    -ms-overflow-style: none;
+    overflow: auto;
 }

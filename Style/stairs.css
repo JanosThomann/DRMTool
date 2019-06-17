@@ -1,23 +1,137 @@
+
+/* gloabals ------------------------------------------------------ */
+
+
+.overviewElement{
+    overflow: hidden;
+    padding-right: 40px;
+    text-align: right;
+    font-weight: 700;
+    font-size: 26px;
+    height: auto;
+    border-bottom: 3px dashed  gray
+}
+
+
+.overviewElementNoBorder{
+    overflow: hidden;
+    padding-right: 40px;
+    text-align: right;
+    font-weight: 700;
+    font-size: 26px;
+    height: auto;
+}
+
+.overviewElement-title{
+    padding: 10px;
+}
+
+.outcome{
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 20px;
+    margin-right: -20px;
+    font-size: 16px;
+    border-left: 3px solid gray;
+}
+
+/* specifics ------------------------------------------------------ */
 .avoidNewRisks{
     background-color: #d4e2ef;	
     border: 1px solid #82a1bd; 
     border-right: 10px solid #82a1bd;
+    height: 60px;
+    transition: height 0.5s;
+    -webkit-transition: height 0.5s;
 }
 
+.preventImpact{
+    background-color: #ecf2db; 
+    border: 1px solid #b3bf86; 
+    border-right: 10px solid #b3bf86;
+    height: 60px;
+}
 .preventAndMitigateImpact{
     background-color: #ecf2db; 
     border: 1px solid #b3bf86; 
     border-right: 10px solid #b3bf86;
+    height: 60px;
+    transition: height 0.5s;
+    -webkit-transition: height 0.5s;
+    z-index: 10;
 }
 
 .prepareAndRespond, .transferAndShare {
     background-color: #fde2cf; 
     border: 1px solid #c99d7d; 
     border-right: 10px solid #c99d7d;
+    height: 60px;
+    transition: height 0.5s;
+    -webkit-transition: height 0.5s;
 }
 
 .bear{
     background-color: #fbdad3; 
     border: 1px solid #c78c7f; 
     border-right: 10px solid #c78c7f;
+    height: 60px;
+    transition: height 0.5s;
+    -webkit-transition: height 0.5s;
 }
+
+.knowTheRisks{
+    cursor: pointer;
+    margin-top: 50px;
+    background-color: lightgray;
+    border: 1px solid gray;
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+    font-size: 26px;
+    border-left: 8px solid gray;
+    border-right: 8px solid gray;
+    margin-bottom: 50px;
+}
+
+.avoidNewRisks:hover{
+    height:220px;
+}
+.preventAndMitigateImpact:hover{
+    height:300px;
+}
+.preventAndMitigateImpactHover{
+    height:300px;
+}
+.prepareAndRespond:hover{    
+    height:200px;
+}
+.transferAndShare:hover{   
+    height:220px;
+}
+
+
+@media only screen and (max-width: 1200px) {
+
+    .prepareAndRespond:hover{
+        height:400px;
+    }
+    
+    .transferAndShare:hover{
+        height:400px;
+    }
+    .preventAndMitigateImpact:hover{
+        height: 350px;
+    }
+    
+    .avoidNewRisks:hover{
+        height:300px;
+    }
+  }
+
+@media only screen and (max-width: 600px) {
+    body {
+      background-color: lightblue;
+    }
+  }

@@ -12,3 +12,12 @@
 .detailValue{
     border-top: 1px solid #666;
 }
+
+.detail{
+    padding: 10px;
+    font-size: 22px;
+    font-weight: 400;
+    float: left;
+    text-align: left;
+
+}

@@ -23,6 +23,9 @@ function getStair(){
     return getUrlParameter('stair');
 }
 
+function getOutcome(){
+    return getUrlParameter('outcome');
+}
 function getIndicatorCode(){
     return getUrlParameter('code');
 }
